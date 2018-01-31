@@ -1,17 +1,28 @@
+sudo: required
+
 services:
-   - docker
+- docker
 
 addons:
-   apt:
-      packages:
-         - docker-ce
+  apt:
+    packages:
+    - docker-ce
+
+env:
+  global:
+  - HUB_USER=yglcode
+  # HUB_PASSWD=...
+  - secure: LZXVxfx11Zj5xww8iSfVlKy3N7q/5UV922xKNTxNWUKauxeeLZd+Jmi/j+B4u896ej0H1G9PfUw+BN3gW++s6X7Q867Kkn/pTB2fsfbVOmES+Yrv/GmdF1mff85QTL/u3Bo7X82Z3v5JmNF7xETL8E0q7Ep9roXKIfuYETkNdOpqXr/najoZsAdiSh8r0/dtPsWshPaiHxygh5BaWJAldT1YggTv8B8Oe1PfEK+3DpbkOzI3NuLT+UOyvCZTOkCg8x1CY00apG3aBU5r6N5MikDlDW3DA0pmY/A92i9z8YfOkkNFXHmZgzQNcM7SmEENtxBZncnyeSz4FVsG06MlaehPqs87kFVMOIvtXS+/8HU4ZAQ4jMPRtK8ssFo9YPESisRsvN2T3BsRljjkvGiWNiYVuLtoidsSTy9Fsgi3wwzmvolD3In2LEclAs9aWr7jims25AQY1ar6Aqh5Y2jDVjIySlN2TvFF/Ab4drDDILnqNxQOH8x3VilgBFXwjUQNDoCoSYQfsfCu6jU2ksGg9ZND3DcSOs7wQbIPJJn5JoJ1S411XOsvPl1Ex1DkOb3VvR+fz8iiLybLjFIDrsKYswXMFhGHttaoyByzUJGhx4ydp8Cn/X+Ef/KDkYb40DeJMcBjS1wRGl2LdHE+ToooLpMZpJpuKvT66DkcsjSH7nQ=
 
 script:
-   - ./build.sh
+- ./build.sh
 
-after_success:
+before_deploy:
+- docker login -u "$HUB_USER" -p "$HUB_PASSWD"
 
-deploy:
-
-
+deploy: 
+  provider: script
+  script: docker push yglcode/hellotrevis:latest
+  on:
+    branch: master
 
