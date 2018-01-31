@@ -1,5 +1,17 @@
-language: go
+services:
+   - docker
 
-go:
-   - 1.9
+addons:
+   apt:
+      packages:
+         - docker-ce
+
+script:
+   - ./build.sh
+
+after_success:
+
+deploy:
+
+
 
