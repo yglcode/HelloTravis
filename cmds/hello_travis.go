@@ -1,5 +1,8 @@
 package main
-import ("fmt";"pkg1")
+import (
+	"fmt"
+	"github.com/yglcode/HelloTravis/pkg1"
+)
 func main() {
 	fmt.Println(pkg1.Echo("Hi Travis 0.2"))
 }
