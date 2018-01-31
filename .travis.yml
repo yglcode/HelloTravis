@@ -22,7 +22,7 @@ before_deploy:
 
 deploy: 
   provider: script
-  script: docker push yglcode/hellotrevis:latest
+  script: docker push yglcode/hellotravis:latest
   on:
     branch: master
 
