@@ -4,5 +4,5 @@ import (
 	"github.com/yglcode/HelloTravis/pkg1"
 )
 func main() {
-	fmt.Println(pkg1.Echo("Hi Travis 0.2"))
+	fmt.Println(pkg1.Echo("Hi Travis 0.6"))
 }
