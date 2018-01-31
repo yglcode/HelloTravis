@@ -1,0 +1,6 @@
+package pkg1
+import ("fmt")
+
+func Echo(arg string) string {
+	return arg
+}
