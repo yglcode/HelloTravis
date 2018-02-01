@@ -22,8 +22,8 @@ before_deploy:
 
 deploy:
   #deploy docker image to docker-hub
-  provider: script
-  script: docker push yglcode/hellotravis:$TRAVIS_TAG
+  - provider: script
+    script: docker push yglcode/hellotravis:$TRAVIS_TAG
   #deploy binaries to github releases
   #- provider: releases
   #  api_key:
