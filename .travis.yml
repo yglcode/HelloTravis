@@ -21,13 +21,6 @@ before_deploy:
 - docker login -u "$HUB_USER" -p "$HUB_PASSWD"
 
 deploy:
-  #deploy docker image to docker-hub
-  - provider: script
-    script: docker push yglcode/hellotravis:$TRAVIS_TAG
-    skip_cleanup: true
-    on:
-      branch: master
-      tags: true
   #deploy binaries to github releases
   - provider: releases
     api_key:
@@ -40,4 +33,10 @@ deploy:
     on:
       branch: master
       tags: true
-    
+  #deploy docker image to docker-hub
+  - provider: script
+    script: docker push yglcode/hellotravis:$TRAVIS_TAG
+    skip_cleanup: true
+    on:
+      branch: master
+      tags: true
