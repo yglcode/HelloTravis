@@ -19,6 +19,7 @@ docker cp builder:$srcDir/hello-travis-linux ./hello-travis-linux
 docker cp builder:$srcDir/hello-travis-darwin ./hello-travis-darwin
 docker cp builder:$srcDir/hello-travis-windows.exe ./hello-travis-windows.exe
 docker rm builder
+docker rmi $builder_img_id
 
 
 
