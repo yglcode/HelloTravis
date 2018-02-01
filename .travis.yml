@@ -34,7 +34,7 @@ deploy:
     - ./hello-trevis-windows.exe
   skip_cleanup: true
   on:
-      branch: master
-      tags: true
+    branch: master
+    tags: true
 
 
