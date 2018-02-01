@@ -24,6 +24,10 @@ deploy:
   #deploy docker image to docker-hub
   - provider: script
     script: docker push yglcode/hellotravis:$TRAVIS_TAG
+    skip_cleanup: true
+    on:
+      branch: master
+      tags: true
   #deploy binaries to github releases
   #- provider: releases
   #  api_key:
@@ -32,8 +36,4 @@ deploy:
    # - ./hello-trevis-linux
    # - ./hello-trevis-darwin
    # - ./hello-trevis-windows.exe
-  skip_cleanup: true
-  on:
-    branch: master
-    tags: true
     
