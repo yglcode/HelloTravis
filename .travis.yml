@@ -1,8 +1,8 @@
 sudo: required
-
+  
 services:
 - docker
-
+   
 #addons:
 #  apt:
 #    packages:
@@ -20,9 +20,21 @@ script:
 before_deploy:
 - docker login -u "$HUB_USER" -p "$HUB_PASSWD"
 
-deploy: 
-  provider: script
-  script: docker push yglcode/hellotravis:latest
+deploy:
+  #deploy docker image to docker-hub
+  - provider: script
+    script: docker push yglcode/hellotravis:$TRAVIS_TAG
+  #deploy binaries to github releases
+  - provider: releases
+    api_key:
+      secure: r2ULQs2Wkx8wvltopaJpXeYOu57/hdnLlM5l9Y/ypaSz2gh2hmjZ6aslR/XHmsZIlaLFppkySGTDAdAfCD/GZ/Dpm12Qn1bTSFCFlUHEGq8LU6M8J8NwQMlXVjMz/t7lDJurbfYDcFY/B6gQrw5f+NhRLqLaBaNjHFNuhtuu+B6Mjf3n5tus4AyL8vnaFqGcKpRkuE93KkeObF7XzRr1N4eggxLEve4Txf8SSOQmHsNXpMhtM1Ruo7kwdGQCWybe90UIWF6qhzaLgBhIMC3dAiucYU22t11GihNpZV4YXrjU9KCq/MemUdM9mYD0bwDRFDnsPkp6TwpsjwSzuZ/tcqVgSDkH+HHJD4xy3TDo4qaV2MenquKxR8gNfb1yPfDLBiTDA3N4cNIyaP7w0TJpUyPQImsUD5eCqoW4/d0nSVMboL9i3ScKk+7j26PXENynE9cTBYon+DN7BxTAjpRhUaIT/2OL4XC1KsWcfqoa9KFE55h6P5TKrOhGg/YwdMaSi0V5iovoZnEr6odtYe7e3sRmsho1xn4UI1oplucjg1nq4+AoFmIRzxEzItrnhVSFBtJFjnssWqiW2i+XDruC9KOLiAIyNrT6AcxmUNOL4vLvKHBOjohaVmB9vDHLFoG7e4L4xwjipurTFFSaNUGkpxrXimuxwyhmT8182TdEafU=
+    files:
+    - ./hello-trevis-linux
+    - ./hello-trevis-darwin
+    - ./hello-trevis-windows.exe
+  skip_cleanup: true
   on:
-    branch: master
+      branch: master
+      tags: true
+
 

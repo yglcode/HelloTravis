@@ -1,8 +1,8 @@
 #!/bin/sh
 
 export tag="latest"
-if [ "$REL_TAG" ]; then
-    tag=$REL_TAG
+if [ "$TRAVIS_TAG" ]; then
+    tag=$TRAVIS_TAG
 fi
 echo $tag
 #build container and binary
